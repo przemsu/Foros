@@ -1,9 +1,7 @@
-'''Skrypt zawierający funkcję odpytujące API o wskazane identyfikatory.'''
-
 import requests
 
 def get_nip(nip_user_input: str, data: str):
-    '''Funkcja pobierająca dane o pojedynczym podmiocie identyfikowanym za pomocą numeru NIP'''
+    '''GET API call for given ids - NIP'''
       
     url = f'https://wl-api.mf.gov.pl/api/search/nip/{nip_user_input}?date={data}'
 
@@ -16,18 +14,18 @@ def get_nip(nip_user_input: str, data: str):
     result = response.json().get('result', {})
     subject = result.get('subject', {})
 
-    nazwa = subject.get('name')
+    name = subject.get('name')
     nip_value = subject.get('nip')
     status = subject.get('statusVat')
     regon = subject.get('regon')
     adres = subject.get('residenceAddress')
-    data_rejestracji = subject.get('registrationLegalDate')
-    numer_konta = subject.get('accountNumbers')
+    registration_date = subject.get('registrationLegalDate')
+    acc_number = subject.get('accountNumbers')
 
-    return nazwa, nip_value, status, regon, adres, data_rejestracji, numer_konta
+    return name, nip_value, status, regon, adres, registration_date, acc_number
 
 def get_regon(regon_user_input: str, data: str):
-    '''Funkcja pobierająca dane o pojedynczym podmiocie identyfikowanym za pomocą numeru REGON'''
+    '''GET API call for given ids - REGON'''
 
     url = f'https://wl-api.mf.gov.pl/api/search/regon/{regon_user_input}?date={data}'
 
@@ -40,12 +38,12 @@ def get_regon(regon_user_input: str, data: str):
     result = response.json().get('result', {})
     subject = result.get('subject')
     
-    nazwa = subject.get('name')
+    name = subject.get('name')
     nip_value = subject.get('nip')
     status = subject.get('statusVat')
     regon = subject.get('regon')
-    adres = subject.get('residenceAddress')
-    data_rejestracji = subject.get('registrationLegalDate')
-    numer_konta = subject.get('accountNumbers')
+    address = subject.get('residenceAddress')
+    registration_date = subject.get('registrationLegalDate')
+    acc_number = subject.get('accountNumbers')
 
-    return nazwa, nip_value, status, regon, adres, data_rejestracji, numer_konta
+    return name, nip_value, status, regon, address, registration_date, acc_number
