@@ -15,7 +15,7 @@ def run():
     today = datetime.strptime(datetime.now().strftime(f'%Y-%m-%d'), '%Y-%m-%d').date()
     search_timestamp = datetime.now().strftime(f'%Y-%m-%d %H:%M:%S')
 
-    tab1, tab2, tab3 = st.tabs(['VAT', 'In process', 'Search history'])
+    tab1, tab2, tab3 = st.tabs(['VAT', 'In progress', 'Search history'])
     with tab1: 
         # Tworzenie sidebar-u do wyszkiwania danych
         nip_val = st.text_input('NIP number', label_visibility='visible')
@@ -85,7 +85,7 @@ def run():
         elif regon_val and date_val <= today:
             if search:
                 regon = regon_checksum(regon_val)
-                name, nip_value, status, regon_value, adres, registration_date, acc_number = get_regon(regon, date_val)
+                name, nip_value, status, regon_value, address, registration_date, acc_number = get_regon(regon, date_val)
                 
                 if name:
                     st.session_state.search_history.append({
