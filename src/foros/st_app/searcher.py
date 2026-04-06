@@ -15,7 +15,7 @@ def run():
     today = datetime.strptime(datetime.now().strftime(f'%Y-%m-%d'), '%Y-%m-%d').date()
     search_timestamp = datetime.now().strftime(f'%Y-%m-%d %H:%M:%S')
 
-    tab1, tab2, tab3 = st.tabs(['VAT', 'In progress', 'Search history'])
+    tab1, tab2, tab3 = st.tabs(['VAT - PL', 'KNF Warning list - PL', 'Search history'])
     with tab1: 
         # Tworzenie sidebar-u do wyszkiwania danych
         nip_val = st.text_input('NIP number', label_visibility='visible')
@@ -123,7 +123,7 @@ def run():
             return
 
     with tab2:
-        st.info('Sanction lits - under construction 🚧')
+        st.info("blablablablabalbal")
 
     with tab3:
         clear_search = st.button('Clear search history', width='stretch')
